@@ -23,4 +23,12 @@ export class AppComponent {
       content: serverData.serverContent
     });
   }
+
+  onFirstElementChange() {
+    this.serverElements[0].name = 'new name';
+  }
+
+  onDestroyClicked(): void {
+    this.serverElements.splice(0, 1);
+  }
 }
