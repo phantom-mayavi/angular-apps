@@ -6,10 +6,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./game-control.component.css']
 })
 export class GameControlComponent implements OnInit {
-  @Output() gameStarted = new EventEmitter<{gameNumber: number}>();
-  interval: number = -1;
-  public gameNo: number = 0;
-  a;
+  @Output() gameStarted = new EventEmitter<number>();
+  public gameNo: number = 1;
+  interval;
 
   constructor() { }
 
@@ -18,18 +17,15 @@ export class GameControlComponent implements OnInit {
 
   onStart(): void {
     console.log("number in onStart " + this.gameNo);
-    this.a = setInterval(this.startGame.bind(this), 1000);
-  }
-
-  startGame(): void {
-    
-    this.gameStarted.emit({gameNumber: this.gameNo});
-    console.log("number emitted " + this.gameNo++);
+    this.interval = setInterval(() => {
+      this.gameStarted.emit(this.gameNo);
+      console.log("number emitted " + this.gameNo++);
+    }, 1000);
   }
 
   onStop(): void {
     console.log("stopping game");
-    clearInterval(this.a);
+    clearInterval(this.interval);
   }
 
 }

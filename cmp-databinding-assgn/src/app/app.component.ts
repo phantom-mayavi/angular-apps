@@ -10,12 +10,12 @@ export class AppComponent {
   oddNumbers: Array<number> = new Array();
   evenNumbers: Array<number> = new Array();
 
-  onNumberEmitted(gameNumberData: {gameNumber: number}): void {
-    console.log("Listening event in app" + gameNumberData.gameNumber);
-    if (gameNumberData.gameNumber % 2 == 1) {
-      this.oddNumbers.push(gameNumberData.gameNumber);
+  onNumberEmitted(gameNumber: number): void {
+    console.log("Listening event in app" + gameNumber);
+    if (gameNumber % 2 == 1) {
+      this.oddNumbers.push(gameNumber);
     } else {
-      this.evenNumbers.push(gameNumberData.gameNumber);
+      this.evenNumbers.push(gameNumber);
     }
   }
 }
